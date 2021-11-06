@@ -24,11 +24,11 @@ def message(message_string):
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute("INSERT INTO message(message) " "VALUES(%s)", message_string)
-        row = cursor.fetchone()
+        row = cursor.lastrowid
         conn.commit()
         cursor.close()
         conn.close()
-        resp = jsonify("Message created successfully!", row)
+        resp = jsonify(row)
         resp.status_code = 200
         return resp
     except Exception as exception:
