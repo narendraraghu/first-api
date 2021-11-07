@@ -28,7 +28,7 @@ def message(message_string):
         conn.commit()
         cursor.close()
         conn.close()
-        resp = jsonify("Message created successfully!", row)
+        resp = jsonify(row)
         resp.status_code = 200
         return resp
     except Exception as exception:

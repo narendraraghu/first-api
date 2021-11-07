@@ -24,3 +24,5 @@ curl $(minikube service node-port --url)/
 or
 
 http://192.168.58.2:32020/
+minikube ip
+
