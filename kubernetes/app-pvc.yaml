@@ -2,8 +2,10 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mysql-pv-volume
+  namespace: narendra
   labels:
     type: local
+    app: mysql
 spec:
   storageClassName: manual
   capacity:
@@ -17,8 +19,11 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
+  namespace: narendra
+  labels:
+    tier: database
+    app: mysql
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
