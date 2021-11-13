@@ -10,9 +10,9 @@ mysql = MySQL()
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Kareli@123'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
 app.config['MYSQL_DATABASE_DB'] = 'flaskapi'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = '172.17.0.14'
 mysql.init_app(app)
 mysql.init_app(app)
 
@@ -33,8 +33,6 @@ def message(message_string):
         return resp
     except Exception as exception:
         return jsonify(str(exception))
-    else:
-        return jsonify("Please provide valid message")
 
 
 if __name__ == '__main__':
