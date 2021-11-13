@@ -31,7 +31,7 @@ def message(message_string):
         conn.close()
         resp = jsonify(row)
         resp.status_code = 200
-        query = {'name': message_string, 'age': row}
+        query = {'message_string': message_string, 'message_id': row}
         response = requests.get('http://192.168.166.72:3001/concatenation', params=query)
         print("response " + response.text)
         return jsonify(response.text)
