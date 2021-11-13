@@ -1,7 +1,8 @@
-from flask_restful import Resource, Api
-from flask import jsonify, request, Flask
+from flask_restful import Api
+from flask import jsonify, Flask
 from flaskext.mysql import MySQL
 import os
+import requests
 
 app = Flask(__name__)
 api = Api(app)
@@ -10,9 +11,9 @@ mysql = MySQL()
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'Kareli@123'
 app.config['MYSQL_DATABASE_DB'] = 'flaskapi'
-app.config['MYSQL_DATABASE_HOST'] = '172.17.0.14'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 mysql.init_app(app)
 
@@ -30,7 +31,10 @@ def message(message_string):
         conn.close()
         resp = jsonify(row)
         resp.status_code = 200
-        return resp
+        query = {'name': message_string, 'age': row}
+        response = requests.get('http://192.168.166.72:3001/concatenation', params=query)
+        print("response " + response.text)
+        return jsonify(response.text)
     except Exception as exception:
         return jsonify(str(exception))
 
